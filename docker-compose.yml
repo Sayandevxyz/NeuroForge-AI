@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=development
+      - DEMO_MODE=true
+      - GPU_PROVIDER=demo
+      - DATABASE_URL=sqlite+aiosqlite:///./neuroforge.db
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./neuroforge.db:/app/neuroforge.db
+    depends_on:
+      - redis
+
+  web:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - api
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"

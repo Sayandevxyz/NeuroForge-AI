@@ -1,0 +1,14 @@
+# Nebius Cloud GPU Cluster Definition
+cluster:
+  name: nebius-nordic-h100-sxm5
+  region: eu-north1
+  gpu_type: nvidia-h100-80gb-sxm5
+  interconnect: InfiniBand NDR 400Gbps
+  topology: 8-way NVLink SXM5
+  node_count: 4
+  gpus_per_node: 8
+  total_gpus: 32
+  storage:
+    type: network-ssd
+    size_tb: 20
+    mount_path: /data/neuroforge

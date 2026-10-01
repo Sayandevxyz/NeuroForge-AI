@@ -1,0 +1,51 @@
+# NeuroForge AI Autonomous Experiment Specification
+experiment_id: exp-template-001
+experiment_name: reasoning-optimization-h100
+research_run_id: NF-027
+version: 1.0.0
+
+model:
+  name: Qwen/Qwen2.5-Coder-7B-Instruct
+  family: Qwen
+  architecture: Transformer-Decoder-7B
+  context_length: 32768
+
+dataset:
+  name: GSM8K-Hard-Cleaned
+  max_length: 2048
+  packing: true
+  loss_masking: response_only
+
+training:
+  epochs: 5
+  batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 0.000018
+  lr_scheduler: cosine
+  warmup_ratio: 0.06
+  weight_decay: 0.01
+  optimizer: AdamW-8bit
+
+optimization:
+  precision: fp8
+  quantization: fp8_e4m3
+  peft_type: lora
+  lora_rank: 64
+  lora_alpha: 128
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  paged_attention: true
+  flash_attention: v3
+
+gpu:
+  provider: nebius-cloud
+  cluster: nebius-nordic-h100-sxm5
+  model: nvidia-h100-80gb-sxm5
+  count: 1
+  tensor_parallel: 1
