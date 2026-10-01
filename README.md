@@ -114,7 +114,7 @@ graph TD
 ### 1. Clone & Setup
 
 ```bash
-git clone https://github.com/your-org/neuroforge-ai.git
+git clone https://github.com/Sayandevxyz/neuroforge-ai.git
 cd neuroforge-ai
 ```
 
@@ -176,23 +176,4 @@ pytest apps/api/tests -v
 
 ---
 
-## 🏆 Signature Hackathon Demonstration (2-Minute Walkthrough)
-
-1. Open `http://localhost:3000`.
-2. Notice the **SYSTEM OPERATIONAL** hardware pill and Nebius NVIDIA H100 status.
-3. Click **[ RUN LIVE DEMO ]** in the Hero section or press `⌘K` → `Run Hackathon Live Demo`.
-4. Watch the 7-stage autonomous loop:
-   * **Stage 1**: Formulation of reasoning objectives (<150ms latency, <8GB VRAM).
-   * **Stage 2**: Agent generates 8 hypotheses.
-   * **Stage 3**: Validates GSM8K-Hard-Cleaned.
-   * **Stage 4**: Baseline BF16 fails latency (214ms > 150ms).
-   * **Stage 5**: Failure Analyst identifies KV-cache memory pressure.
-   * **Stage 6**: Experiment Agent mutates configuration into FP8 + LoRA r=64.
-   * **Stage 7**: 🏆 **Champion Experiment #08** crowns with 87.4% accuracy, 124ms latency, and 7.8GB VRAM.
-5. Click **[ Explore Experiment Genome ]** to visually trace how the agent arrived at this champion configuration.
-
----
-
 ## 📄 License
-
-Apache License 2.0. Built for the Nebius × NVIDIA AI Hackathon.
